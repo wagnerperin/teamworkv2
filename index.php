@@ -3,7 +3,7 @@
 
     $template = getTemplate("default.html");
 
-    $template = parseTemplate($template, []);
+    //$template = parseTemplate($template, []);
 
     echo $template;
 ?>
