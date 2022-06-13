@@ -31,8 +31,7 @@
             $stmt->bindParam("userType", $user->userType);
             $stmt->bindParam("createdAt", $user->createdAt);
 
-            $stmt->execute();
-        
+            return $stmt->execute();
         }
         
     }
