@@ -1,7 +1,7 @@
 <?php
 
-    ini_set('display_errors', 1);
-    error_reporting(E_ALL);
+    ini_set('display_errors', 0);
+    error_reporting(E_ERROR);
 
     require_once("templates/functions.php");
     require_once("templates/menu/Menu.php");
@@ -12,11 +12,28 @@
     
     $template = getTemplate("default.html");
 
-    $template = parseTemplate($template, [
-        'content' => ShowCourses::getInstance()->generate(),
-        'menu' => $menu,
-        'notification' => $notification
-    ]);
+    if($_SESSION['logedIn'] != true) {
 
-    echo $template;
+        $template = parseTemplate($template, [
+            'content' => ShowCourses::getInstance()->generate(),
+            'menu' => $menu,
+            'logging' => getTemplate("notLogged.html", "templates/Logged/"),
+            'notification' => $notification
+        ]);
+    
+        echo $template;
+
+    }else {
+
+        $template = parseTemplate($template, [
+            'content' => ShowCourses::getInstance()->generate(),
+            'menu' => $menu,
+            'logging' => getTemplate("Logged.html", "templates/Logged/"),
+            'user' => getTemplate("NameUser.php", "templates/Login/"),
+            'notification' => $notification
+        ]);
+
+        echo $template;  
+    }
+    
 ?>

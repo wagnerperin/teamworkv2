@@ -33,6 +33,18 @@
 
             return $stmt->execute();
         }
+
+        public function findByMail($email) {
+
+            $user = Banco::getConnection()->query("
+                SELECT userId, password, email, userType, name 
+                FROM Users 
+                WHERE email = \"$email\"", PDO::FETCH_OBJ
+            );
+            $user->execute();
+
+            return $user->fetch();
+        }
         
     }
 ?>
