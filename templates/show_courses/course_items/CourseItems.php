@@ -1,10 +1,9 @@
 <?php
 
-    require_once(__DIR__."/../../classes/DAO/CoursesDAO.php");
-    require_once(__DIR__."/../functions.php");
-    require_once(__DIR__."/../Courses/Course.php");
+    require_once(__DIR__."/../../../classes/DAO/CoursesDAO.php");
+    require_once(__DIR__."/../../functions.php");
 
-    class Course{
+    class CourseItems{
         private static self $instance;
 
         public static function getInstance(){
@@ -14,13 +13,13 @@
             return self::$instance;
         }
 
-        public function showCourses(){
+        public function generate(){
             $courses = CoursesDAO::getInstance()->findCourses();
-            $showCourse = getTemplate("courses.html", "templates/Courses/");
+            $courseItemsTemplate = getTemplate("course_items.html", "templates/show_courses/course_items/");
             
             $course = "";
             foreach($courses as $item){
-                $course = $course . parseTemplate($showCourse, [
+                $course = $course . parseTemplate($courseItemsTemplate, [
                     'title' => $item->title,
                     'courseId' => $item->courseId,
                     'image' => $item->image,
