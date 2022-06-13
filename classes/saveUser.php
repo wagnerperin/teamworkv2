@@ -17,7 +17,7 @@
         $notification = new Notification("danger", true, $err->getMessage());
         session_start();
         $_SESSION['notification'] = $notification;
-        header("Location: ../registration.php");
+        header("Location: ../register.php");
     }
     
 ?>
