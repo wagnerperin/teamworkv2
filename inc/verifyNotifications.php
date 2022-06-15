@@ -7,5 +7,4 @@
     }else{
         $notification = Notification::getInstance()->generate();
     }
-    session_destroy();
 ?>

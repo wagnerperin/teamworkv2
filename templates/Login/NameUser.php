@@ -1,0 +1,1 @@
+<li><span class="glyphicon glyphicon-user"></span><?php echo $_SESSION["name"]; ?></a></li>
