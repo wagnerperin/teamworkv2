@@ -20,8 +20,21 @@
             
             $stmt->execute();
 
-            return $stmt->fetchAll(PDO::FETCH_OBJ);  
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        }
 
+        public function findCourse($id){
+            $stmt= Banco::getConnection()->prepare("
+                SELECT * FROM Courses 
+                LEFT JOIN Users ON Users.userId=Courses.creatorId
+                WHERE Courses.courseId = :id"
+            );
+
+            $stmt->bindParam('id', $id);
+            
+            $stmt->execute();
+
+            return $stmt->fetch(PDO::FETCH_OBJ);
         }
 
     }
