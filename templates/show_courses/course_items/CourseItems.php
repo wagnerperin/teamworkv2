@@ -31,6 +31,25 @@
             return $course;
 
         }
+
+        public function findCoursesWithFilters(string $courseName = "", int $limit = 8){
+            $courses = CoursesDAO::getInstance()->findCoursesWithFilters($courseName, $limit);
+            $courseItemsTemplate = getTemplate("course_items.html", "templates/show_courses/course_items/");
+            
+            $course = "";
+            foreach($courses as $item){
+                $course = $course . parseTemplate($courseItemsTemplate, [
+                    'title' => $item->title,
+                    'courseId' => $item->courseId,
+                    'image' => $item->image,
+                    'name' => $item->name
+                ]);
+
+            }
+
+            return $course;
+
+        }
         
     }
 

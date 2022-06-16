@@ -37,6 +37,25 @@
             return $stmt->fetch(PDO::FETCH_OBJ);
         }
 
+        public function findCoursesWithFilters(string $courseName = "", int $limit = 8) {
+            $whereFiltroCourse = "";
+            
+            if($courseName != ""){
+                $whereFiltroCourse .= " AND (Courses.title like '%$courseName%' or Courses.subtitle like '%$courseName%')";
+            }
+
+            $SQL =  "SELECT * FROM Courses 
+            LEFT JOIN Users ON Users.userId = Courses.creatorId 
+            WHERE true 
+            {$whereFiltroCourse}
+            ORDER BY Courses.courseId DESC 
+            LIMIT {$limit}" ;
+
+            $stm = Banco::getConnection()->query($SQL);
+            
+            return $stm->fetchAll(PDO::FETCH_OBJ);
+        }
+
     }
 
 ?>
