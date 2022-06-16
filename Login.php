@@ -13,7 +13,6 @@
   $template = parseTemplate($template, [
     'menu' => $menu,
     'content' => getTemplate("login.html", "templates/Login/"),
-    'logging' => getTemplate("notLogged.html", "templates/Logged/"),
     'notification' => $notification
   ]);
 
