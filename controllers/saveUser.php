@@ -1,7 +1,7 @@
 <?php  
 
-    require_once("models/User.php");
-    require_once("DAO/UserDAO.php");
+    require_once(__DIR__."/../classes/models/User.php");
+    require_once(__DIR__."/../classes/DAO/UserDAO.php");
     require_once(__DIR__ . "/../templates/notifications/Notification.php");
     
     try{
