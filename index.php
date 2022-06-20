@@ -8,12 +8,15 @@
     require_once("templates/show_courses/ShowCourses.php");
     require_once("inc/verifyNotifications.php");
 
+    $courseName = $_GET['courseName'] ?? "";
+    $limitResults = $_GET['limit'] ?? 8;
+
     $menu = Menu::getInstance()->generate();
     
     $template = getTemplate("default.html");
 
     $template = parseTemplate($template, [
-        'content' => ShowCourses::getInstance()->generate(),
+        'content' => ShowCourses::getInstance()->generate($courseName, $limitResults),
         'menu' => $menu,
         'notification' => $notification
     ]);

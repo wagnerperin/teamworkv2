@@ -11,19 +11,11 @@
             return self::$instance;
         }
 
-        public function generate(){
+        public function generate(string $courseName = "", int $limit = 8){
             $showCourses = getTemplate("show_courses.html", "templates/show_courses/");
 
             return parseTemplate($showCourses, [
-                'showCourse' => CourseItems::getInstance()->generate()
-            ]);
-        }
-
-        public function findCoursesWithFilters(string $courseName = "", int $limit = 8){
-            $showCourses = getTemplate("show_courses.html", "templates/show_courses/");
-
-            return parseTemplate($showCourses, [
-                'showCourse' => CourseItems::getInstance()->findCoursesWithFilters($courseName, $limit)
+                'showCourse' => CourseItems::getInstance()->generate($courseName, $limit)
             ]);
         }
     }
