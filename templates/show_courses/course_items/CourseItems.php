@@ -13,8 +13,8 @@
             return self::$instance;
         }
 
-        public function generate(){
-            $courses = CoursesDAO::getInstance()->findCourses();
+        public function generate(string $courseName = "", int $limit = 8){
+            $courses = CoursesDAO::getInstance()->findCoursesWithFilters($courseName, $limit);
             $courseItemsTemplate = getTemplate("course_items.html", "templates/show_courses/course_items/");
             
             $course = "";
