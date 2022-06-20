@@ -37,11 +37,15 @@
             return $stmt->fetch(PDO::FETCH_OBJ);
         }
 
-        public function findCoursesWithFilters(string $courseName = "", int $limit = 8) {
+        public function findCoursesWithFilters(string $courseName = "", int $categoryId = 0, int $limit = 8) {
             $whereFiltroCourse = "";
             
             if($courseName != ""){
                 $whereFiltroCourse .= " AND (Courses.title like '%$courseName%' or Courses.subtitle like '%$courseName%')";
+            }
+
+            if(empty($categoryId) == false){
+                $whereFiltroCourse .= " AND (Courses.categoryId = $categoryId)";
             }
 
             $SQL =  "SELECT * FROM Courses 
