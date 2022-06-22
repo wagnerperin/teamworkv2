@@ -14,7 +14,11 @@
         $_SESSION["userType"] = $user->userType;
         $_SESSION["name"] = $user->name;
         
-        header('Location: ../../index.php');
+        if(isset($_SESSION['redirectToCourse'])) {
+            header('Location: ../../course.php?courseId='.$_SESSION['redirectToCourse']);
+        } else {
+            header('Location: ../../index.php');
+        }
     }else header('Location: ../../Login.php');
     
     
