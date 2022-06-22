@@ -60,6 +60,20 @@
             return $stm->fetchAll(PDO::FETCH_OBJ);
         }
 
+        public function findCoursesByUserId($userId){
+            $stmt= Banco::getConnection()->prepare("
+                SELECT C.title, C.courseId, C.image, A.name 
+                FROM Courses as C, Users as A, Enrollment as E 
+                WHERE C.creatorId = A.userId AND C.courseId = E.courseId AND E.userId=:userId
+            ");
+
+            $stmt->bindParam('userId', $userId);
+            
+            $stmt->execute();
+
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        }
+
     }
 
 ?>

@@ -31,7 +31,24 @@
             return $course;
 
         }
-        
+
+        public function userCourses($userId){
+            $courses = CoursesDAO::getInstance()->findCoursesByUserId($userId);
+            $courseItemsTemplate = getTemplate("course_items.html", "templates/show_courses/course_items/");
+            
+            $course = "";
+            foreach($courses as $item){
+                $course = $course . parseTemplate($courseItemsTemplate, [
+                    'title' => $item->title,
+                    'courseId' => $item->courseId,
+                    'image' => $item->image,
+                    'name' => $item->name
+                ]);
+
+            }
+
+            return $course;
+        }       
     }
 
 ?>

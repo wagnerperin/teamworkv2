@@ -11,6 +11,14 @@
             return self::$instance;
         }
 
+        public function userCourses($userId){
+            $showCourses = getTemplate("show_courses.html", "templates/show_courses/");
+
+            return parseTemplate($showCourses, [
+                'showCourse' => CourseItems::getInstance()->userCourses($userId)
+            ]);
+        }
+
         public function generate(string $courseName = "", int $categoryId = 0, int $limit = 8){
             $showCourses = getTemplate("show_courses.html", "templates/show_courses/");
 

@@ -1,4 +1,12 @@
 <ul class="nav navbar-nav navbar-right">
-    <li><a href="profile.php?userId={userId}"><span class="glyphicon glyphicon-user"></span> {name}</a></li>
-    <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+    <!--<li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>-->
+    <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">{name}
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            <li><a href="profile.php?userId={userId}"><span class="glyphicon glyphicon-user"></span> Meu Perfil</a></li>
+            <li><a href="mycourses.php"><span class="glyphicon glyphicon-book"></span> Meus Cursos</a></li>
+            <li><a href="controllers/logout.php"><span class="glyphicon glyphicon-log-out"></span> Sair</a></li>
+        </ul>
+    </li>
 </ul>
