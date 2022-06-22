@@ -18,7 +18,10 @@
             
             $subMenu = "";
             foreach($submenus as $item){
-                $subMenu = $subMenu . parseTemplate($subMenuItemTemplate, ['item' => $item->name]);
+                $subMenu = $subMenu . parseTemplate($subMenuItemTemplate, [
+                    'item' => $item->name, 
+                    'categoryId' => $item->categoryId
+                ]);
             }
 
             return $subMenu;
